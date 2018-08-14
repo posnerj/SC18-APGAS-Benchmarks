@@ -1,0 +1,3 @@
+[submodule "apgas"]
+	path = apgas
+	url = git://github.com/posnerj/PLM-APGAS
