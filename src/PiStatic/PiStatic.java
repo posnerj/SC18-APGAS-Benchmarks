@@ -19,12 +19,11 @@ public class PiStatic {
     }
 
     final int numPlaces = places().size();
-
     final int workerPerPlace = Integer.parseInt(args[0]);
     final int n = Integer.parseInt(args[1]);
     final int tasksPerWorker = Integer.parseInt(args[2]);
     final long POINTS = 1L << n; // POINTS = 2^n
-    final long pointsPerTask = POINTS / (workerPerPlace * tasksPerWorker * places().size());
+    final long pointsPerTask = POINTS / (workerPerPlace * tasksPerWorker * numPlaces);
 
     GlobalRef<AtomicLong> result = new GlobalRef<>(new AtomicLong());
 
@@ -54,6 +53,7 @@ public class PiStatic {
             }
           }
         });
+
     System.out.println("Pi is roughly " + 4.0 * result.get().get() / POINTS);
     final long after = System.nanoTime();
     System.out.println("Times:" + ((after - before) / 1E9) + " sec");
